@@ -1,34 +1,40 @@
 spring:
   application:
     name: test
+## Docker AI Connections ,via Docker Model Runner, Uses OpenAI Config
   ai:
+    # By default, chat is enabled, but you can disable it if you want to use a different provider.
+    # This helps to avoid conflicts when using multiple providers.
+    # Example : if you want to use OpenAI and Ollama, you can disable chat for one of them.
+    # This gets rid of the "Multiple chat providers are enabled" error.
+#    chat:
+#      client:
+#        enabled: false
     openai:
+      ##api-key: ${OPENAI_API_KEY}
       chat:
         options:
           model: ai/gemma3
       api-key: dummy
       base-url: http://localhost:12434/engines
-#    model:
-#      chat: ollama
+      # When using Docker Model Runner, if we don't set the base-url, it will default to https://api.openai.com/v1/engines
     ollama:
       chat:
         options:
           model: llama3.2:1b
-    chat:
-      client:
-        enabled: false
+    bedrock:
+      aws:
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
+        region: us-east-1
+      converse:
+        chat:
+          options:
+            model: arn:aws:bedrock:us-east-1:210454360080:inference-profile/global.anthropic.claude-sonnet-4-6
 
-#  ai:
-#    model:
-#      chat: ollama
-#    ollama:
-#      chat:
-#        options:
-#          model: llama3.2:1b
-#  ai:
-#    openai:
-#          api-key: ${OPENAI_API_KEY}
 
 logging:
   level:
     root: DEBUG
+#  pattern:
+#    console: %green(%d{HH:mm:ss.SSS}}) %blue(%-5level) %red([%thread]) %yellow(%logger{36})

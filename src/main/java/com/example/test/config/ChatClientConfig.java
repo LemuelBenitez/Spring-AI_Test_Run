@@ -1,5 +1,6 @@
 package com.example.test.config;
 
+import org.springframework.ai.bedrock.converse.BedrockProxyChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
@@ -17,15 +18,18 @@ public class ChatClientConfig {
      then inject it where needed.
      */
 
-    @Bean
-    public ChatClient openAiChatClient(OpenAiChatModel openAiChatModel){
-        ChatClient.Builder chat = ChatClient.builder(openAiChatModel);
-        return chat.build();
+    @Bean("openAiChatClient")
+    public ChatClient.Builder openAiChatClient(OpenAiChatModel openAiChatModel){
+        return ChatClient.builder(openAiChatModel);
     }
 
-    @Bean
-    public ChatClient ollamaChatClient(OllamaChatModel ollamaChatModel){
-        ChatClient.Builder chat = ChatClient.builder(ollamaChatModel);
-        return chat.build();
+    @Bean("ollamaChatClient")
+    public ChatClient.Builder ollamaChatClient(OllamaChatModel ollamaChatModel){
+        return ChatClient.builder(ollamaChatModel);
+    }
+
+    @Bean("bedrockClaudeChatClient")
+    public ChatClient.Builder bedrockClaudeChatClient(BedrockProxyChatModel bedrockClaudeChatModel){
+        return ChatClient.builder(bedrockClaudeChatModel);
     }
 }
