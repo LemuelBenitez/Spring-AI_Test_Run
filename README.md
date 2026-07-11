@@ -16,9 +16,9 @@ As a **Java Fullstack Engineer** transitioning into **Full Stack AI Engineering*
 
 ## 📸 Project Overview
 
-![Project Architecture](images/Screenshot%202026-07-11%20at%204.35.43%20PM.png)
+![Project Architecture](https://github.com/LemuelBenitez/Spring-AI_Test_Run/blob/main/images/Screenshot%202026-07-11%20at%204.35.43%E2%80%AFPM.png)
 
-![Integration Testing](images/Screenshot%202026-07-11%20at%204.36.16%20PM.png)
+![Integration Testing](https://github.com/LemuelBenitez/Spring-AI_Test_Run/blob/main/images/Screenshot%202026-07-11%20at%204.36.16%E2%80%AFPM.png)
 
 ---
 
