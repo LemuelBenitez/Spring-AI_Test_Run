@@ -1,16 +1,20 @@
 package com.example.test.controller;
+
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v2")
-public class MultiModalController {
+@RequestMapping("/prompt-advisors")
+public class AdvisorsMultiModelController {
     private ChatClient openAiChatClient;
     private ChatClient ollamaChatClient;
     private ChatClient bedrockClaudeChatClient;
 
-    public MultiModalController(
+    public AdvisorsMultiModelController(
             @Qualifier("openAiChatClient")ChatClient.Builder openAiChatClient,
             @Qualifier("ollamaChatClient") ChatClient.Builder ollamaChatModel,
             @Qualifier("bedrockClaudeChatClient") ChatClient.Builder bedrockClaudeChatModel){
@@ -21,7 +25,10 @@ public class MultiModalController {
 
     @GetMapping("/ollama")
     public String ollamaResponse(@RequestParam String msg){
-        return ollamaChatClient.prompt(msg).call().content();
+        return ollamaChatClient.prompt()
+                .system("You are a helpful Customer Support assistant. If a user asks a question, let them know you are still under construction.")
+                .user(msg)
+                .call().content();
     }
 
     @GetMapping("/openAI")
