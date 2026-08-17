@@ -17,22 +17,7 @@ public class ChatClientConfig {
      You create (and expose) the builder for the provider you use (OpenAI, Ollama, Bedrock),
      then inject it where needed.  */
 
-    @Bean("openAiChatClient")
-    public ChatClient.Builder openAiChatClient(OpenAiChatModel openAiChatModel){
-        return ChatClient.builder(openAiChatModel);
-    }
-
-    @Bean("ollamaChatClient")
-    public ChatClient.Builder ollamaChatClient(OllamaChatModel ollamaChatModel){
-        return ChatClient.builder(ollamaChatModel);
-    }
-
-    @Bean("bedrockClaudeChatClient")
-    public ChatClient.Builder bedrockClaudeChatClient(BedrockProxyChatModel bedrockClaudeChatModel){
-        return ChatClient.builder(bedrockClaudeChatModel);
-    }
-
-  /*
+      /*
     Message Roles :
       -  User :  What the requester is asking the model to do.  This is the most common role.
       - System :  Instructions to the model about how to behave.  This is often used to set the tone or style of the model’s responses.
@@ -59,5 +44,32 @@ public class ChatClientConfig {
    */
 
 
+    @Bean("openAiChatClient")
+    public ChatClient.Builder openAiChatClient(OpenAiChatModel openAiChatModel){
+        return ChatClient.builder(openAiChatModel);
+    }
+
+    @Bean("ollamaChatClient")
+    public ChatClient.Builder ollamaChatClient(OllamaChatModel ollamaChatModel){
+        return ChatClient.builder(ollamaChatModel);
+    }
+
+    @Bean("bedrockClaudeChatClient")
+    public ChatClient.Builder bedrockClaudeChatClient(BedrockProxyChatModel bedrockClaudeChatModel){
+        return ChatClient.builder(bedrockClaudeChatModel);
+    }
+
+
+ /*
+  Chat Options : a configuration in Spring AI that allows you to customize how a LLM behaves during chat/after-chat completion calls.
+   - Like a "tunnel panel" for your AI model
+   - You can set limits, adjust creativity , randomness, verbosity, control response length and more.
+  */
+
+
+    @Bean("bedrockClaudeChatClient2")
+    public ChatClient.Builder bedrockClaudeChatClient2(BedrockProxyChatModel bedrockClaudeChatModel){
+        return ChatClient.builder(bedrockClaudeChatModel);
+    }
 
 }

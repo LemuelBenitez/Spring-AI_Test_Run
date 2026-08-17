@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gen-ai-memory-db
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
   application:
     name: test
 ## Docker AI Connections ,via Docker Model Runner, Uses OpenAI Config
@@ -10,6 +15,12 @@ spring:
 #    chat:
 #      client:
 #        enabled: false
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: never # never is used to avoid schema initialization, as we are using a custom schema script.
+            schema: classpath:/scripts.sql
     openai:
       ##api-key: ${OPENAI_API_KEY}
       chat:
@@ -36,5 +47,10 @@ spring:
 logging:
   level:
     root: DEBUG
+    org:
+    ai:
+      chat:
+        client:
+          advisor: DEBUG
 #  pattern:
 #    console: %green(%d{HH:mm:ss.SSS}}) %blue(%-5level) %red([%thread]) %yellow(%logger{36})
